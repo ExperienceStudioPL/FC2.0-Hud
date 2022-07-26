@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meat charset="uft-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v6.1.1/css/pro.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <style>
+
+            body {
+                background-color: transparent;
+                /* background-color: #222222; */
+                color: white;
+                
+                font-family: calibri;
+                font-weight: bold;
+
+        
+            }
+
+
+            .up, .bot {
+    display: none;
+    background: black;
+    width: 100%;
+    height: 10%;
+    position: fixed;
+    margin: 0;
+    left: 0%;
+}
+
+.bot {
+    bottom: 0;
+    margin: 0;
+}
+
+.up {
+    top: 0;
+    margin: 0;
+}
+            #carHud {
+                /* margin-top: 50.1%;
+                margin-right: 0.5%; */
+                margin-bottom: 0.1vw;
+
+                /* border-radius: 30px 30px 10px 10px;  */
+                border-top-left-radius: 25px;
+                border-bottom-left-radius: 25px;
+                border-top-right-radius: 25px;
+                background: rgba(33, 35, 48, 0.9);
+                color: white;
+                height: 7px;
+
+                float: right;
+                clear: right;
+
+                padding: 20px;
+                opacity: 0.9;
+                text-align: right;
+            }
+            #normalHud {
+                /* margin-top: 0.15%;
+                margin-right: 0.5%; */
+                opacity: 0.9;
+
+                /* border-radius: 30px 10px 30px 30px; */
+                border-bottom-left-radius: 25px;
+                border-bottom-right-radius: 25px;
+                border-top-left-radius: 25px;
+                background: rgba(33, 35, 48, 0.9);
+                color: white;
+                height: 7px;
+                
+                float: right;
+                clear: right;
+
+                padding: 20px;
+
+                /* text-align: right; */
+            }
+
+            .lineUp {
+                position: relative;
+                top: -13px;
+                font-size: 23px;
+                color: #6e6e6e;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+            #iconGps {
+                position: relative;
+                top: -12px;
+                font-size: 23px;
+                color: #6958a0;
+                margin-right: 3px;
+            }
+            #streetLabel {
+                position: relative;
+                top: -12px;
+                font-size: 23px;
+            }
+            #iconGasPump {
+                position: relative;
+                top: -11px;
+                font-size: 23px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            #navigation {
+                position: relative;
+                top: -12px;
+                font-size: 23px;
+            }
+            #vehSpeed {
+                position: relative;
+                top: -12px;
+                font-size: 23px;
+            }
+
+            #waypointLineUp {
+                position: relative;
+                top: -13px;
+                font-size: 23px;
+                color: #6e6e6e;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+            #iconWaypoint {
+                position: relative;
+                top: -12px;
+                font-size: 23px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            #waypointLabel {
+                position: relative;
+                top: -12px;
+                font-size: 23px;
+            }
+
+            .lineDown {
+                position: relative;
+                top: -16px;
+                font-size: 26px;
+                color: #6e6e6e;
+                margin-left: 9px;
+                margin-right: 9px;
+            }
+            #iconTime {
+                position: relative;
+                top: -14px;
+                font-size: 26px;
+                margin-right: 3px;
+            }
+            #time {
+                position: relative;
+                top: -14px;
+                font-size: 26px;
+                
+            }
+            #iconHeart {
+                position: relative;
+                top: -13px;
+                font-size: 26px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%); 
+                -webkit-text-fill-color: transparent; 
+                -webkit-background-clip: text;
+            }
+            #iconBrain {
+                position: relative;
+                top: -13px;
+                font-size: 26px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            #iconHunger {
+                position: relative;
+                top: -13px;
+                font-size: 26px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            #iconThirst {
+                position: relative;
+                top: -13px;
+                font-size: 26px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            #iconVolume {
+                position: relative;
+                top: -13px;
+                font-size: 26px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            #iconMoon {
+                color: #6958a0;
+            }
+
+            #armorLineDown {
+                position: relative;
+                top: -16px;
+                font-size: 26px;
+                color: #6e6e6e;
+                margin-left: 9px;
+                margin-right: 9px;
+                display: none;
+            }
+            #iconArmor {
+                position: relative;
+                top: -13px;
+                font-size: 26px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%); 
+                -webkit-text-fill-color: transparent; 
+                -webkit-background-clip: text;
+                display: none;
+            }
+
+            #lungLineDown {
+                position: relative;
+                top: -16px;
+                font-size: 26px;
+                color: #6e6e6e;
+                margin-left: 9px;
+                margin-right: 9px;
+                display: none;
+            }
+            #iconLung {
+                position: relative;
+                top: -13px;
+                font-size: 26px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%); 
+                -webkit-text-fill-color: transparent; 
+                -webkit-background-clip: text;
+                display: none;
+            }
+
+            #drunkLineDown {
+                position: relative;
+                top: -16px;
+                font-size: 26px;
+                color: #6e6e6e;
+                margin-left: 9px;
+                margin-right: 9px;
+                display: none;
+            }
+            #iconDrunk {
+                position: relative;
+                top: -13px;
+                font-size: 26px;
+                background: linear-gradient(to bottom, #6958a0 100%, white 0%); 
+                -webkit-text-fill-color: transparent; 
+                -webkit-background-clip: text;
+                display: none;
+            }
+
+
+            .allustawienia {
+    position: absolute;
+    left: 0;
+    top:0;
+    color: white;
+    font-family: Calibri;
+    font-weight: bold;
+    list-style: none;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.h1ustawienia {
+  padding-top: 30px;
+}
+
+.h3ustawienia {
+}
+.h3ustawienia, .h1ustawienia {
+  text-align: center;
+}
+
+hr {
+  border: gray 1px solid;
+  width: 100%;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.text-set {
+  position: relative;
+  top: -22px;
+  left: 50px;
+}
+
+.text-set2 {
+  position: relative;
+  top: -18px;
+  left: 165px;
+}
+
+li {
+  width: fit-content;
+}
+
+input[type=range]::-webkit-slider-thumb:active{
+  background-color: #9123b0 ;
+}
+
+.slider:active{
+  border: #9123b0 1px solid;
+}
+
+
+.slider {
+    -webkit-appearance: none;
+    width: 150px;
+    height: 7px;
+    border-radius: 5px;  
+    outline: white;
+    background-color: transparent;
+    border: 1px solid white;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; 
+    background: white;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+  }
+
+  .main {
+    background-color: rgba(33, 35, 48, 0.9);
+    width: 30%;
+    box-sizing: border-box;
+    border-radius: 40px;
+    opacity: 0.9;
+    padding: 10px 50px;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    /* margin-left: 35%;
+    margin-top: 15%; */
+  }
+
+.settings-list{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 335px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar-track{
+  display: none;
+}
+
+::-webkit-scrollbar{
+  width: 5px;
+  background-color: transparent;
+  height: 50px;
+}
+
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #9123b0;
+}
+
+input[type='checkbox'], input[type='radio'] {
+  --active: #9123b0;
+  --active-inner: #fff;
+  --focus: 1px #9123b0;
+  --border: #fff;
+  --border-hover: #6a1c80;
+  --background: #25282b;
+  --disabled: #25282b;
+  --disabled-inner: #25282b;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 15px;
+  outline: none;
+  margin-left: 0px;
+  text-align: left;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid var(--bc, var(--border));
+  background: var(--b, var(--background));
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+}
+input[type='checkbox']:after, input[type='radio']:after {
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  position: absolute;
+  transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+}
+input[type='checkbox']:checked, input[type='radio']:checked {
+  --b: var(--active);
+  --bc: var(--active);
+  --d-o: 0.3s;
+  --d-t: 0.6s;
+  --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+}
+input[type='checkbox']:disabled, input[type='radio']:disabled {
+  --b: var(--disabled);
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+input[type='checkbox']:disabled:checked, input[type='radio']:disabled:checked {
+  --b: var(--disabled-inner);
+  --bc: var(--border);
+}
+input[type='checkbox']:disabled + label, input[type='radio']:disabled + label {
+  cursor: not-allowed;
+}
+input[type='checkbox']:hover:not(:checked):not(:disabled), input[type='radio']:hover:not(:checked):not(:disabled) {
+  --bc: var(--border-hover);
+}
+input[type='checkbox']:hover, input[type='radio']:hover {
+  box-shadow: 0 0 0 var(--focus);
+}
+input[type='checkbox']:not(.switch), input[type='radio']:not(.switch) {
+  width: 21px;
+}
+input[type='checkbox']:not(.switch):after, input[type='radio']:not(.switch):after {
+  opacity: var(--o, 0);
+}
+input[type='checkbox']:not(.switch):checked, input[type='radio']:not(.switch):checked {
+  --o: 1;
+}
+input[type='checkbox'] + label, input[type='radio'] + label {
+  font-size: 14px;
+  line-height: 21px;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  margin-left: 4px;
+}
+input[type='checkbox']:not(.switch) {
+  border-radius: 7px;
+}
+input[type='checkbox']:not(.switch):after {
+  width: 5px;
+  height: 9px;
+  border: 2px solid var(--active-inner);
+  border-top: 0;
+  border-left: 0;
+  left: 7px;
+  top: 4px;
+  transform: rotate(var(--r, 20deg));
+}
+input[type='checkbox']:not(.switch):checked {
+  --r: 43deg;
+}
+input[type='checkbox'].switch {
+  width: 35px;
+  border-radius: 11px;
+}
+input[type='checkbox'].switch:after {
+  left: 1px;
+  top: 1px;
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+  background: var(--ab, var(--border));
+  transform: translateX(var(--x, 0));
+}
+input[type='checkbox'].switch:checked {
+  --ab: var(--active-inner);
+  --x: 20.7px;
+}
+input[type='checkbox'].switch:disabled:not(:checked):after {
+  opacity: 0.6;
+}
+input[type='radio'] {
+  border-radius: 50%;
+}
+input[type='radio']:after {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--active-inner);
+  opacity: 0;
+  transform: scale(var(--s, 0.7));
+}
+input[type='radio']:checked {
+  --s: 0.5;
+}
+
+.outline {
+	position: fixed;
+	bottom: 9vh;
+	left: 5.8vh;
+	width: 29.629vh;
+	text-align: center;
+}
+
+.border {
+	width: 26.851vh;
+	height: 25.851vh;
+	border: 3px solid white;
+	border-radius: 50%;
+	position: relative;
+	top: 50px;
+	display: inline-block;
+}
+
+
+#huj {
+    transform-origin: 100% 100%;
+}
+
+
+.supciodupcio {
+  position: absolute;
+  right: 1.5%;
+  bottom: 1%;
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+
+        </style>
+    </head>
+    
+    <body>
+        <div class="up"></div>
+        <div class="bot"></div>
+        <div class="full-screen">
+          <div id="main_container">
+            <div class="clearfix" id="page">
+              <div class="clearfix grpelem" id="pu203">
+                <div class="outline">
+                  <center>
+                    <div class="border"></div>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="calutenkihudzik" id="calutenkihudziczek">
+            <div id="superjajeczko564565">
+              <div class="supciodupcio">
+                <div id="huj">
+                  <div id="carHud">
+                    <i class="far fa-map-marker-alt" id="iconGps"></i>
+                    <span id="streetLabel">Prosperity St</span>
+                    <span class="lineUp">|</span>
+                    <i class="far fa-gas-pump" id="iconGasPump"></i>
+                    <span class="lineUp">|</span>
+                    <i class="fa-regular fa-location-crosshairs" id="iconWaypoint"></i>
+                    <span id="waypointLabel">2.5 mi</span>
+                    <span id="waypointLineUp">|</span>
+                    <span id="navigation">SE</span>
+                    <span class="lineUp">|</span>
+                    <span id="vehSpeed">18 MPH</span>
+                  </div>
+                  <div id="normalHud">
+                    <span id="iconTime">
+                      <i class="fa-solid fa-sun"></i>
+                    </span>
+                    <span id="time">09:11</span>
+                    <span class="lineDown" id="timeLineDown">|</span>
+                    <i class="far fa-heart" id="iconHeart"></i>
+                    <span class="lineDown" id="heartLineDown">|</span>
+                    <i class="far fa-shield" id="iconArmor"></i>
+                    <span class="lineDown" id="armorLineDown">|</span>
+                    <i class="far fa-lungs" id="iconLung"></i>
+                    <span class="lineDown" id="lungLineDown">|</span>
+                    <i class="far fa-brain" id="iconBrain"></i>
+                    <span class="lineDown" id="brainLineDown">|</span>
+                    <i class="far fa-beer" id="iconDrunk"></i>
+                    <span class="lineDown" id="drunkLineDown">|</span>
+                    <i class="far fa-utensils-alt" id="iconHunger"></i>
+                    <span class="lineDown" id="hungerLineDown">|</span>
+                    <i class="far fa-tint" id="iconThirst"></i>
+                    <span class="lineDown" id="thirstLineDown">|</span>
+                    <i class="far fa-volume" id="iconVolume"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="allustawienia">
+              <div class="main">
+                <h1 class="h1ustawienia">Opcje</h1>
+                <ul class="settings-list">
+                  <h3 class="h3ustawienia">Powiadomienia</h3>
+                  <br>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="noty">
+                    </div>
+                    <div class="text-set">Ukryj Notyfikacje</div>
+                  </li>
+                  <br>
+                  <hr>
+                  <h3 class="h3ustawienia">Ogólne</h3>
+                  <br>
+                  <li>
+                    <div class="pasek">
+                      <input type="range" min="50" step="0.1" value="100" max="100" class="slider" id="myRange">
+                    </div>
+                    <div class="text-set2" id="wynik"></div>
+                  </li>
+                  <br>
+                  <hr>
+                  <h3 class="h3ustawienia">Ukryte Ikony</h3>
+                  <br>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="zdrowie">
+                    </div>
+                    <div class="text-set">Zdrowia</div>
+                  </li>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="picie">
+                    </div>
+                    <div class="text-set">Picia</div>
+                  </li>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="jedzenie">
+                    </div>
+                    <div class="text-set">Jedzenia</div>
+                  </li>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="stres">
+                    </div>
+                    <div class="text-set">Stresu</div>
+                  </li>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" checked class="switch" id="armor">
+                    </div>
+                    <div class="text-set">Armoru</div>
+                  </li>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="rozmowa">
+                    </div>
+                    <div class="text-set">Rozmowy</div>
+                  </li>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="dzien">
+                    </div>
+                    <div class="text-set">Dnia</div>
+                  </li>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="czas">
+                    </div>
+                    <div class="text-set">Czasu</div>
+                  </li>
+                  <br>
+                  <hr>
+                  <br>
+                  <h3 class="h3ustawienia">Inne</h3>
+                  <br>
+                  <li>
+                    <div class="settings">
+                      <input type="checkbox" class="switch" id="cinematic">
+                    </div>
+                    <div class="text-set">Tryb Kinowy</div>
+                  </li>
+                </ul>
+                <br>
+                <br>
+              </div>
+            </div>
+            </div>
+
+
+
+        <script>
+            let gamePaused = 0;
+            let carHudToogle = true;
+            ToogleCarHud(false)
+            let speakDistance = 55;
+            const iconSun = '<i class="fa-thin fa-sun-bright"></i>';
+            const iconMoon = '<i class="fal fa-moon" id="iconMoon"></i>';
+
+            function GamePaused(data) {
+                if (data == 1) {
+                    if (gamePaused == 0) {
+                        gamePaused = 1;
+                        $('#normalHud').css('display', 'none');
+                        if (carHudToogle == true) {
+                            $('#carHud').css('display', 'none');
+                        }
+                    }
+                } else {
+                    if (gamePaused == 1) {
+                        gamePaused = 0;
+                        $('#normalHud').show();
+                        if (carHudToogle == true) {
+                            $('#carHud').show();
+                        }
+                    }
+                }
+            }
+
+            function ToogleCarHud(data) {
+                if (data == true) {
+                    if (carHudToogle == false) {
+                        carHudToogle = true;
+                        $("#carHud").animate({
+                            width: "toggle"
+                        });
+                        $('#carHud').fadeIn("slow");
+                        $('#carHud').css('display', 'block');
+                        $('#normalHud').css('margin-top', '0.15%');
+                        $('#normalHud').css('border-top-right-radius', '0px');
+                    }
+                } else if (data == false) {
+                    if (carHudToogle == true) {
+                        carHudToogle = false;
+                        $("#carHud").animate({
+                            width: "toggle"
+                        });
+                        $('#carHud').fadeOut('slow');
+                        // $('#normalHud').css('margin-top', '52.75%');
+                        $('#normalHud').css('border-top-right-radius', '25px');
+                        $('#normalHud').css('border-top-left-radius', '25px');
+                    }
+                }
+            }
+
+            function GetTime(hours, minutes) {
+                let icon = iconSun;
+                if (parseInt(hours) < 6 || parseInt(hours) >= 18) {
+                    icon = iconMoon;
+                } 
+
+
+
+                if (hours.toString().length == 1) {
+                    hours = "0"+hours.toString();
+                }
+                if (minutes.toString().length == 1) {
+                    minutes = "0"+minutes.toString();
+                }
+                let time = hours+":"+minutes
+                return {"time": time, "icon": icon}
+            }
+
+            window.addEventListener('message', function(event) {
+                if (event.data.type == "UPDATE_ALL") {
+                    let inVehicle = event.data.inVehicle;
+
+                    let time = GetTime(event.data.timeH, event.data.timeM);
+
+                    let streetLabel = event.data.location;
+                    let waypointDistance = event.data.waypointDistance;
+
+                    let armor = event.data.armor;
+                    let oxy = +event.data.oxy;
+                    let drunk = +event.data.drunk;
+
+                    GamePaused(event.data.gamePaused);
+
+                    document.getElementById('iconTime').innerHTML = time.icon;
+                    document.getElementById('time').innerHTML = time.time;
+                    $('#iconHeart').css('background', 'linear-gradient(to top, #6958a0 '+event.data.health+'%, white 0%)');
+                    $('#iconHeart').css('-webkit-text-fill-color', 'transparent');
+                    $('#iconHeart').css('-webkit-background-clip', 'text');
+                    
+
+                    $('#iconBrain').css('background', 'linear-gradient(to top, #6958a0 '+event.data.stress+'%, white 0%)');
+                    $('#iconBrain').css('-webkit-text-fill-color', 'transparent');
+                    $('#iconBrain').css('-webkit-background-clip', 'text');
+
+
+
+                    $('#iconHunger').css('background', 'linear-gradient(to top, #6958a0 '+event.data.hunger+'%, white 0%)');
+                    $('#iconHunger').css('-webkit-text-fill-color', 'transparent');
+                    $('#iconHunger').css('-webkit-background-clip', 'text');
+
+
+
+                    $('#iconThirst').css('background', 'linear-gradient(to top, #6958a0 '+event.data.thirst+'%, white 0%)');
+                    $('#iconThirst').css('-webkit-text-fill-color', 'transparent');
+                    $('#iconThirst').css('-webkit-background-clip', 'text');
+
+                    if (armor > 0) {
+                        $('#armorLineDown').show();
+                        $('#iconArmor').show();
+                        $('#iconArmor').css('background', 'linear-gradient(to top, #6958a0 '+armor+'%, white 0%)');
+                        $('#iconArmor').css('-webkit-text-fill-color', 'transparent');
+                        $('#iconArmor').css('-webkit-background-clip', 'text');
+                    } else {
+                        $('#armorLineDown').css('display', 'none');
+                        $('#iconArmor').css('display', 'none');
+                    }
+
+                    if (oxy < 100) {
+                        $('#lungLineDown').show();
+                        $('#iconLung').show();
+                        $('#iconLung').css('background', 'linear-gradient(to top, #6958a0 '+oxy+'%, white 0%)');
+                        $('#iconLung').css('-webkit-text-fill-color', 'transparent');
+                        $('#iconLung').css('-webkit-background-clip', 'text');
+                    } else {
+                        $('#lungLineDown').css('display', 'none');
+                        $('#iconLung').css('display', 'none');
+                    }
+
+                    if (drunk > 0) {
+                        $('#drunkLineDown').show();
+                        $('#iconDrunk').show();
+                        $('#iconDrunk').css('background', 'linear-gradient(to top, #6958a0 '+drunk+'%, white 0%)');
+                        $('#iconDrunk').css('-webkit-text-fill-color', 'transparent');
+                        $('#iconDrunk').css('-webkit-background-clip', 'text');
+                    } else {
+                        $('#drunkLineDown').css('display', 'none');
+                        $('#iconDrunk').css('display', 'none');
+                    }
+
+                    if (event.data.isTalking == true) {
+                        $('#iconVolume').css('background', 'linear-gradient(to top, #9f8fdf '+speakDistance+'%, white 0%)');
+                        $('#iconVolume').css('-webkit-text-fill-color', 'transparent');
+                        $('#iconVolume').css('-webkit-background-clip', 'text');
+                    } else {
+                        $('#iconVolume').css('background', 'linear-gradient(to top, #6958a0 '+speakDistance+'%, white 0%)');
+                        $('#iconVolume').css('-webkit-text-fill-color', 'transparent');
+                        $('#iconVolume').css('-webkit-background-clip', 'text');
+                    }
+
+                    if (inVehicle == 1) {
+                        ToogleCarHud(true);
+                        document.getElementById('streetLabel').innerHTML = streetLabel;
+                        document.getElementById('navigation').innerHTML = event.data.direction;
+                        document.getElementById('vehSpeed').innerHTML = event.data.vehicleSpeed;
+                        $('#iconGasPump').css('background', 'linear-gradient(to top, #6958a0 '+event.data.carFuel+'%, white 0%)');
+                        $('#iconGasPump').css('-webkit-text-fill-color', 'transparent');
+                        $('#iconGasPump').css('-webkit-background-clip', 'text');
+
+                        if (!(waypointDistance == 0)) {
+                            $('#iconWaypoint').show();
+                            $('#waypointLabel').show();
+                            $('#waypointLineUp').show();
+                            document.getElementById('waypointLabel').innerHTML = waypointDistance+' '+event.data.waypointDistanceUnuts;
+                        } else {
+                            $('#iconWaypoint').css('display', 'none');
+                            $('#waypointLabel').css('display', 'none');
+                            $('#waypointLineUp').css('display', 'none');
+                        }
+
+                        if (document.querySelector('#carHud').offsetWidth > document.querySelector('#normalHud').offsetWidth) {
+                            $('#normalHud').css('border-top-left-radius', '0px');
+                            $('#carHud').css('border-bottom-left-radius', '25px');
+                        } else if (document.querySelector('#carHud').offsetWidth < document.querySelector('#normalHud').offsetWidth) {
+                            $('#normalHud').css('border-top-left-radius', '25px');
+                            $('#carHud').css('border-bottom-left-radius', '0px');
+                        } else {
+                            $('#normalHud').css('border-top-left-radius', '25px');
+                            $('#carHud').css('border-bottom-left-radius', '25px');
+                        }
+
+                    } else {
+                        ToogleCarHud(false);
+
+                    }
+
+                } else if (event.data.type == "TOGGLE_HUD") {
+                    if (event.data.toogle == true) {
+                        $("#normalHud").animate({
+                            width: "toggle"
+                        });
+                        if (carHudToogle == true) {
+                            $("#carHud").animate({
+                                width: "toggle"
+                            });
+                        }
+                        // $('body').fadeIn();
+                    } else {
+                        $("#normalHud").animate({
+                            width: "toggle"
+                        });
+                        if (carHudToogle == true) {
+                            $("#carHud").animate({
+                                width: "toggle"
+                            });
+                        }
+                        // $('body').fadeOut();
+                    }
+                } else if (event.data.type == "UPDATE_VOICE") {
+                    if (event.data.mode == 'Car') {
+                        speakDistance = 45;
+                    } else if (event.data.mode == 'Whisper') {
+                        speakDistance = 35;
+                    } else if (event.data.mode == 'Normal') {
+                        speakDistance = 60;
+                    } else if (event.data.mode == 'Shouting') {
+                        speakDistance = 100;
+                        
+                    }
+                }
+            });
+
+
+
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("wynik");
+
+output.innerHTML = "Skala (" + slider.value + "%" + ")";
+
+
+slider.oninput = function(){
+    output.innerHTML = "Skala (" + this.value + "%" + ")";
+
+    if(this.value == 10) {
+    alert("10"); // to jest wyswietlanie jak jest 10%
+    }
+}
+
+window.addEventListener('message', function(event) {
+if (event.data.type == "ON_HUD") {
+$('.allustawienia').css({display: "flex"}).hide().fadeIn('slow')
+$(document).keyup(function(e) {
+if (e.keyCode == 27) { // escape key maps to keycode `27`
+$.post('http://FC2.0-Hud/nuioff', JSON.stringify({type:'close'}));
+$('.allustawienia').fadeOut('slow');
+}
+});
+}             
+})
+
+
+var animating = false;
+
+function toggleMapUI(visable) {
+
+    if (visable) {
+        $(".outline").fadeIn();
+        $(".speed").fadeIn();
+    } else {
+        $(".outline").fadeOut();
+        $(".speed").fadeOut();
+    }
+
+}
+
+$(document).ready(function () {
+
+    $("#main_container").hide();
+});
+
+window.addEventListener('message', function (event) {
+
+
+    var edata = event.data;
+
+    if (edata.type == "Init") {
+
+
+        $("#main_container").show();
+
+
+    } else if (edata.type == "closeMapUI") {
+        toggleMapUI(false);
+    } else if (edata.type == "openMapUI") {
+        toggleMapUI(true);
+    } else if (edata.type == "hideUI") {
+        $("#main_container").hide();
+    } else if (edata.type == "showUI") {
+        $("#main_container").show();
+    } 
+
+
+});
+
+
+
+
+
+
+
+
+//Checki na all
+const check = document.getElementById("noty");
+check.onclick = function() {
+if (document.getElementById('noty').checked) {
+//cos.hide
+} else {
+//cos.show
+}
+}
+const check2 = document.getElementById("cinematic");
+check2.onclick = function() {
+if (document.getElementById('cinematic').checked) {
+$('.up').fadeIn('slow');
+$('.bot').fadeIn('slow');
+$('.border').fadeOut('slow');
+$('#superjajeczko564565').fadeOut('slow');
+} else {
+$('.up').fadeOut('slow');
+$('.bot').fadeOut('slow');
+$('.border').fadeIn('slow');
+$('#superjajeczko564565').fadeIn('slow');
+}
+}
+const check3 = document.getElementById("armor");
+check3.onclick = function() {
+if (document.getElementById('armor').checked) {
+$('#iconArmor').fadeOut('slow')
+$('#armorLineDown').fadeOut('slow')
+} else {
+$('#iconArmor').fadeIn('slow')
+$('#armorLineDown').fadeIn('slow')
+}
+}
+const check4 = document.getElementById("zdrowie");
+check4.onclick = function() {
+if (document.getElementById('zdrowie').checked) {
+$('#iconHeart').fadeOut('slow')
+$('#timeLineDown').fadeOut('slow')
+} else {
+$('#iconHeart').fadeIn('slow')
+$('#timeLineDown').fadeIn('slow')
+}
+}
+const check5 = document.getElementById("jedzenie");
+check5.onclick = function() {
+if (document.getElementById('jedzenie').checked) {
+$('#iconHunger').fadeOut('slow')
+$('#brainLineDown').fadeOut('slow')
+} else {
+$('#iconHunger').fadeIn('slow')
+$('#brainLineDown').fadeIn('slow')
+}
+}
+const check6 = document.getElementById("picie");
+check6.onclick = function() {
+if (document.getElementById('picie').checked) {
+$('#iconThirst').fadeOut('slow')
+$('#hungerLineDown').fadeOut('slow')
+} else {
+$('#iconThirst').fadeIn('slow')
+$('#hungerLineDown').fadeIn('slow')
+}
+}
+const check7 = document.getElementById("stres");
+check7.onclick = function() {
+if (document.getElementById('stres').checked) {
+$('#iconBrain').fadeOut('slow')
+$('#heartLineDown').fadeOut('slow')
+} else {
+$('#iconBrain').fadeIn('slow')
+$('#heartLineDown').fadeIn('slow')
+}
+}
+const check8 = document.getElementById("rozmowa");
+check8.onclick = function() {
+if (document.getElementById('rozmowa').checked) {
+$('#iconVolume').fadeOut('slow')
+$('#thirstLineDown').fadeOut('slow')
+} else {
+$('#iconVolume').fadeIn('slow')
+$('#thirstLineDown').fadeIn('slow')
+}
+}
+const check9 = document.getElementById("czas");
+check9.onclick = function() {
+if (document.getElementById('czas').checked) {
+$('#time').fadeOut('slow')
+} else {
+$('#time').fadeIn('slow')
+}
+}
+const check10 = document.getElementById("dzien");
+check10.onclick = function() {
+if (document.getElementById('dzien').checked) {
+$('#iconTime').fadeOut('slow')
+} else {
+$('#iconTime').fadeIn('slow')
+}
+}
+
+
+
+
+
+slider.oninput = function(){
+output.innerHTML = "Skala (" + this.value + "%" + ")";
+// console.log(this.value); // kazda wartosc sie wyswietla
+// $(body).css({transform: scale(${this.value})}) //DO ZROBIENIA
+// const superjajeczko0 = this.value / 2 
+// console.log(superjajeczko0)
+// const superjajeczko10 = document.querySelector('#carHud').margin-top;
+// const jajco = this.value + superjajeczko10
+$('#huj').css({transform: `scale(${this.value + "%"})`})
+const jajeczko = this.value*0.9
+$('.main').css({transform: `scale(${jajeczko + "%"})`})
+}
+</script>
+</body>
+</html> 
